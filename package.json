@@ -1,0 +1,25 @@
+{
+  "name": "io-buffer",
+  "version": "1.0.0",
+  "description": "A stream that buffers I/O in chunks of a specified size",
+  "main": "io-buffer.js",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "tape": "^3.0.2"
+  },
+  "scripts": {
+    "test": "node test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rclark/io-buffer.git"
+  },
+  "author": "Ryan Clark",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rclark/io-buffer/issues"
+  },
+  "homepage": "https://github.com/rclark/io-buffer"
+}
