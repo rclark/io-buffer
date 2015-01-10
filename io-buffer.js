@@ -17,7 +17,9 @@ BufferedStream.prototype._transform = function(chunk, enc, callback) {
     this._offset += bytes;
     chunk = chunk.slice(bytes);
     if (this._offset === this._size) {
-      this.push(this._buf);
+      var toRead = new Buffer(this._size);
+      this._buf.copy(toRead);
+      this.push(toRead);
       this._offset = 0;
     }
   }

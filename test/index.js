@@ -1,6 +1,7 @@
 var stream = require('stream');
 var test = require('tape').test;
 var ioBuf = require('../io-buffer');
+var crypto = require('crypto');
 
 test('buffers writes', function(t) {
   var size, bufSize = 50, totalSent = 0, totalWritten = 0, flushed = false;
@@ -62,4 +63,27 @@ test('buffers reads', function(t) {
   });
 
   readable.pipe(buffered);
+});
+
+test('buffer maintains order', function(t) {
+  var size = Math.floor(Math.random() * (600 - 1) + 1);
+  var buffered = ioBuf.createBufferedStream(size);
+
+  var writable = new stream.Writable();
+  writable.data = '';
+  writable._write = function(chunk, enc, callback) {
+    writable.data += chunk;
+    callback();
+  };
+
+  var data = crypto.randomBytes(300).toString('hex');
+
+  buffered.pipe(writable)
+    .on('finish', function() {
+      t.equal(writable.data, data, 'expected data');
+      t.end();
+    });
+
+  buffered.write(data);
+  buffered.end();
 });
