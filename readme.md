@@ -1,6 +1,6 @@
 # io-buffer
 
-![build status](https://travis-ci.org/rclark/io-buffer.svg?branch=master)
+[![Build Status](https://travis-ci.org/rclark/io-buffer.svg?branch=master)](https://travis-ci.org/rclark/io-buffer)
 
 A dead-simple stream that buffers I/O. Data is made available in chunks of your specified size.
 
